@@ -9,3 +9,4 @@
 状态建议：draft → pending_information_review → information_approved → pending_design_review → design_approved → ready_for_integration。approved与published分开；缺审核人或审核决定不自动通过。
 输出JSON为数据载体，Markdown供审核。版本修订保留审核历史；重大事实或设计修改应使对应审核失效并重审。
 
+

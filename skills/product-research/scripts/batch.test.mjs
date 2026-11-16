@@ -1,0 +1,11 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,rm,readFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {collect,extract,mergeProducts,route} from './batch.mjs';
+const p=(company='acme',model='X-100',region='CN',v=10)=>({company_id:company,model,ownership:{status:'confirmed',evidence_ids:['E1']},observations:[{source_url:'https://example.test/'+region,region,evidence_ids:['E1'],specifications:{capacity:v}}]});
+test('bilingual identity merges, regional evidence and conflicts survive',()=>{const r=mergeProducts([],[p(),p('acme','x-100','EN',11)],'acme');assert.equal(r.records.length,1);assert.equal(r.records[0].observations.length,2);assert.equal(r.conflicts.length,1);assert.equal(r.records[0].approved,false);});
+test('company, punctuation and variant boundaries survive',()=>{const a=p();const b=p('acme','X100');const c=p('other');const d={...p(),variant_key:'AU'};assert.equal(mergeProducts([],[a,b,c,d],'acme').records.length,4);assert.equal(route(c,'acme'),'inspiration_gallery');assert.equal(route({...a,ownership:{status:'unknown',evidence_ids:[]}},'acme'),'pending_classification');});
+test('lazy images and documentation retained without assigning models',()=>{const r=extract('<img data-src="/a.png" alt="X"><a href="/guide.pdf">Manual</a><table><tr><td>10kWh</td></tr></table>','https://example.test/p');assert.equal(r.images[0].url,'https://example.test/a.png');assert.equal(r.images[0].verified_model,null);assert.equal(r.documents.length,1);assert.equal(r.tables[0][0][0],'10kWh');});
+test('20 inputs, isolated failure, persisted manifest and resume',async()=>{const dir=await mkdtemp(join(tmpdir(),'research-'));let calls=0;const f=async u=>{calls++;if(u.endsWith('/7'))throw Error('offline');return {ok:true,url:u,headers:new Headers({'content-type':'text/html'}),text:async()=>'<title>Product</title>'};};const config={target_company:{id:'acme'},urls:Array.from({length:20},(_,i)=>'https://example.test/'+i)};try{const a=await collect(config,dir,f);assert.equal(a.length,20);assert.equal(a.filter(x=>x.status==='failed').length,1);assert.equal(JSON.parse(await readFile(join(dir,'manifest.json'))).length,20);calls=0;await collect({...config,resume:true},dir,f);assert.equal(calls,3);}finally{await rm(dir,{recursive:true,force:true});}});

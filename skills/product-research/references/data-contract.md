@@ -8,3 +8,4 @@ JSON对象至少包含schema_version、记录ID、采集日期、输入URL、产
 reviews.information与reviews.design各记录status、reviewer、reviewed_at、decision_text。整体approved不得因第一轮通过而置true。published独立记录。
 正式知识库目录建议products/、series/、sources/、reviews/，待审目录staging/。此Skill不自动创建或填充正式库。
 
+
