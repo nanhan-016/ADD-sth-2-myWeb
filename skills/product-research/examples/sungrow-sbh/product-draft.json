@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0-test",
+  "test_id": "sungrow-343-20261112",
+  "status": "pending_design_review",
+  "collected_on": "2026-11-12",
+  "input_url": "https://cn.sungrowpower.com/product_detail/343.html",
+  "scope": [
+    "phase_1_identification",
+    "phase_2_portfolio_mapping"
+  ],
+  "evidence_states": [
+    "OBSERVED",
+    "INFERRED",
+    "UNKNOWN"
+  ],
+  "company": {
+    "display_name": "阳光电源",
+    "status": "OBSERVED",
+    "evidence_ids": [
+      "E1"
+    ],
+    "legal_name": null
+  },
+  "brand": {
+    "value": "SUNGROW",
+    "status": "OBSERVED",
+    "evidence_ids": [
+      "E1",
+      "E2"
+    ]
+  },
+  "business_line": {
+    "value": "储能系统",
+    "meaning": "官方网页产品分类，不代表已核实内部组织架构",
+    "status": "OBSERVED",
+    "evidence_ids": [
+      "E1"
+    ]
+  },
+  "official_category": {
+    "value": "户用储能",
+    "status": "OBSERVED",
+    "evidence_ids": [
+      "E1"
+    ]
+  },
+  "product_type": {
+    "value": "户用储能电池",
+    "status": "OBSERVED",
+    "evidence_ids": [
+      "E1"
+    ]
+  },
+  "series": {
+    "id": "sungrow-sbh",
+    "name": "SBH",
+    "classification": "Official",
+    "status": "OBSERVED",
+    "evidence_ids": [
+      "E2"
+    ],
+    "official_models": [
+      "SBH100",
+      "SBH150",
+      "SBH200",
+      "SBH250",
+      "SBH300",
+      "SBH350",
+      "SBH400"
+    ],
+    "coverage": "官方英文系列页列举；不等同所有地区在售目录或完整历史目录"
+  },
+  "products": [
+    {
+      "id": "sungrow-sbh100",
+      "model": "SBH100",
+      "name": "SBH100 户用储能电池",
+      "name_status": "normalized_from_official_model_and_type",
+      "series_id": "sungrow-sbh",
+      "status": "OBSERVED",
+      "evidence_ids": [
+        "E1",
+        "E2"
+      ],
+      "specifications": {
+        "modules": 2,
+        "capacity_kwh": 10,
+        "nominal_voltage_v": 140.8,
+        "operating_voltage_v": [
+          118.8,
+          160.6
+        ],
+        "max_charge_discharge_current_a": 50
+      }
+    },
+    {
+      "id": "sungrow-sbh150",
+      "model": "SBH150",
+      "name": "SBH150 户用储能电池",
+      "name_status": "normalized_from_official_model_and_type",
+      "series_id": "sungrow-sbh",
+      "status": "OBSERVED",
+      "evidence_ids": [
+        "E1",
+        "E2"
+      ],
+      "specifications": {
+        "modules": 3,
+        "capacity_kwh": 15,
+        "nominal_voltage_v": 211.2,
+        "operating_voltage_v": [
+          178.2,
+          240.9
+        ],
+        "max_charge_discharge_current_a": 50
+      }
+    }
+  ],
+  "specification_caveat": "参数为中国官网表格声明，容量与电流脚注尚未核验；不作为工程选型依据。",
+  "discovered_models": [
+    {
+      "model": "SBH200",
+      "series_id": "sungrow-sbh",
+      "evidence_ids": [
+        "E2"
+      ],
+      "status": "OBSERVED"
+    },
+    {
+      "model": "SBH250",
+      "series_id": "sungrow-sbh",
+      "evidence_ids": [
+        "E2"
+      ],
+      "status": "OBSERVED"
+    },
+    {
+      "model": "SBH300",
+      "series_id": "sungrow-sbh",
+      "evidence_ids": [
+        "E2"
+      ],
+      "status": "OBSERVED"
+    },
+    {
+      "model": "SBH350",
+      "series_id": "sungrow-sbh",
+      "evidence_ids": [
+        "E2"
+      ],
+      "status": "OBSERVED"
+    },
+    {
+      "model": "SBH400",
+      "series_id": "sungrow-sbh",
+      "evidence_ids": [
+        "E2"
+      ],
+      "status": "OBSERVED"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "sungrow-sbh100",
+      "to": "sungrow-sbh150",
+      "type": "parallel_capacity_variants",
+      "status": "INFERRED",
+      "evidence_ids": [
+        "E1"
+      ],
+      "reason": "同页并列型号、模组数量及容量不同；没有前后代声明"
+    }
+  ],
+  "unknowns": [
+    "企业法定全称及制造主体",
+    "型号上市时间与迭代关系",
+    "各地区当前在售状态",
+    "参数脚注与资料版本差异",
+    "已有知识库重复记录情况"
+  ],
+  "assets": {
+    "status": "not_downloaded_or_visually_verified",
+    "model_images_present": [
+      "SBH100",
+      "SBH150"
+    ],
+    "missing_verification": [
+      "原始图片URL",
+      "场景图与型号对应",
+      "宣传图与型号对应"
+    ]
+  },
+  "reviews": {
+    "information": {
+      "status": "approved",
+      "reviewer": "user",
+      "reviewed_at": "2026-11-12",
+      "decision_text": "核查完成，可以进行下一步"
+    },
+    "design": {
+      "status": "pending",
+      "reviewer": null,
+      "reviewed_at": null
+    }
+  },
+  "approved": false,
+  "published": false,
+  "later_phases": {
+    "phase_3_design": "manual_test_draft_completed",
+    "phase_4_series_pis": "limited_sample_draft_completed",
+    "phase_5_knowledge": "not_implemented",
+    "phase_6_integration": "not_implemented"
+  },
+  "design_analysis_files": [
+    "design-report.md",
+    "design-evidence.json"
+  ]
+}
