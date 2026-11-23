@@ -3,7 +3,7 @@ name: product-research
 description: 从能源设备及储能产品官方URL建立可追溯的产品档案、产品体系映射和设计/PIS分析，以七个一级分类开放打标并定向补标旧产品，输出JSON与Markdown并执行两阶段人工审核。
 ---
 # Product Research v1.4
-输入产品官网URL。企业目录支持官方检索和用户导入；仅在目录缺失导致重要归属歧义时索取目录。竞品与跨行业参考仅接受用户提供的URL，不自行寻找。
+输入产品官网URL。企业目录支持官方检索和用户导入；仅在目录缺失导致重要归属歧义时索取目录。竞品与跨行业参考按用户提供的 URL，或用户在 [跨行业设计案例检索](../cross-industry-product-discovery/SKILL.md) 中明确勾选后交接的 URL 处理。本 Skill 不自行发起候选检索。
 先读 [工作流](references/workflow.md)；输出前读 [数据规则](references/data-contract.md)。
 ## 必须保留的决策
 - 一个产品对应一个具体型号；一个页面含多个型号时拆分产品对象。
