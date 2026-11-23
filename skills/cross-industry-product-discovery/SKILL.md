@@ -7,6 +7,8 @@ description: 根据用户选中的产品设计标签，检索跨行业设计参�
 
 流程见[检索与初筛流程图](references/workflow.md)。详细解析交由同仓库的 [Product Research](../product-research/SKILL.md)。
 
+参考试跑：[PowerTitan 3.0 跨行业检索与人工初筛](references/powertitan-first-search.md)。
+
 ## 输入与触发
 
 当用户明确要求外部检索，读取所选标签及原产品上下文。接收标签名称，若可用则一并读取标签 ID 和一级类别。网页可从 Product Research 的 `display_groups` 传入用户选中的条目。原产品名称、型号、行业和 URL 如可用，用于排除原产品并衡量跨行业覆盖。支持直接输入标签文字。只有在完全缺少标签时，才询问用户要查哪些设计特征。
