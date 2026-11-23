@@ -2,7 +2,7 @@
 
 ## 批量运行（新增）
 
-需要Node.js 20或以上，无额外依赖。将下列配置保存为本次任务的config.json，urls可填写任意数量的产品链接，20仅为示例，不是固定数量或上限；本企业信息由用户指定，不包含内置案例。
+需要Node.js 20或以上，无额外依赖。将下列配置保存为本次任务的config.json，urls可以填20条产品链接；本企业信息由用户指定，不包含内置案例。
 
 ```json
 {
@@ -40,7 +40,7 @@ node scripts/batch.mjs merge analyzed-input.json products.pending.json
 
 相同确认企业、相同具体型号与变体标识才自动合并；中文、英文、地区资料保留在observations中。型号连字符和区域后缀不自动去除。归属不明先待确认；参数冲突输出conflicts，不覆盖历史值。程序仅检查必要字段，不是完整Schema校验器。
 
-本次自动化止于待审核文件，网页写入暂缓。测试采用虚构数据与一组模拟URL，验证批处理、隔离失败、续跑、去重和冲突保留，不代表已完成真实厂商网站的端到端验收。输入数量没有固定上限；实际吞吐量受网络、目标网站及AI工具额度约束。当前采集器接收多链接批次，按顺序逐页处理，不是无限并发。
+本次自动化止于待审核文件，网页写入暂缓。测试采用虚构数据与20个模拟URL，验证批处理、隔离失败、续跑、去重和冲突保留，不代表已在20个真实厂商网站完成端到端验收。
 
 用于能源设备及储能产品研究：从官方产品URL整理产品身份、企业产品体系、单品设计与系列PIS，输出可追溯的JSON和Markdown。
 
@@ -50,7 +50,7 @@ node scripts/batch.mjs merge analyzed-input.json products.pending.json
 - `references/workflow.md`：研究步骤、两阶段人工审核及状态流转。
 - `references/data-contract.md`：数据字段、来源、证据与图片记录规则。
 
-此文件夹仅保存可复用规则，不包含具体网页案例、产品档案或以往审核结果。
+参考示例：[PowerTitan 3.0 打标说明](references/examples/PowerTitan-3.0/PowerTitan-3.0-Tagging.md) · [标签 JSON](references/examples/PowerTitan-3.0/PowerTitan-3.0-Tagging.json) · [网页预览](references/examples/PowerTitan-3.0/PowerTitan-3.0-Preview.html)。该示例用于参考证据记录、七类标签和网页展示。每个新产品仍需独立核验。
 
 ## 如何使用
 
@@ -69,6 +69,10 @@ node scripts/batch.mjs merge analyzed-input.json products.pending.json
 最低输入是官方产品URL。企业产品目录可选，可提供文件或官方目录链接；仅在重要归属无法判断时补充。竞品和跨行业参考由你另行提供URL。
 
 Agent需要网页搜索/读取及图片查看能力。若页面无法访问、图片无法查看或资料不完整，应记录限制和未知项，不编造结论。
+
+## 设计标签与补标
+
+人工审核①通过后，按 [设计标签与旧产品补标](references/design-tags.md) 对设计细节开放打标。输入已有产品库可定向回查并生成补标建议。在设计审核中核对新增标签、唯一归类、证据及旧产品变更。此步骤由 Agent 执行。静态采集和身份合并脚本仍按原命令运行。
 
 ## 两阶段审核
 
